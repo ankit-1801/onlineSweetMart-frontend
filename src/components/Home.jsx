@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
 import PostHeader from "./PostHeader";
+import ItemService from '../services/ItemService';
+import FoodItems from "./FoodItems";
 
 export default function Home() {
+    const [foodItems ,setFoodItems]  = useState([]);
+
+  
+    useEffect(()=>{
+      ItemService.getAllSweetItem().then(response=>{
+          setFoodItems(response.data);
+      }).catch(error => {
+        console.log(error);
+      })
+    },[]);
     return(
-        <div className="text-center text-white">
+        <div className="bg-dark">
         <PostHeader/>
-        <h1 >SweetItems LiSt</h1>
+        <FoodItems data = {foodItems}/>
         </div>
     );
 }

@@ -10,55 +10,55 @@ import {
 
 export default function Footer() {
     return (
-        <footer style={{ padding: "5rem 0", backgroundColor: "#212529", color: "#fff" }}>
+        <footer style={{ paddingBottom: "2%", backgroundColor: "#212529", color: "#fff",fontSize:"smaller" }}>
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-lg-10 mx-auto">
                         <div className="row ">
                             <div className="col-6 col-lg-3 text-center" >
-                                <h2 className="ps-3">Company</h2>
+                                <h4 className="ps-3">Company</h4>
                                 <ul>
-                                    <li style={{ listStyle: "none", fontSize: "1rem", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
+                                    <li style={{ listStyle: "none", fontSize: "small", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
                                         <a href="" style={{ textDecoration: "none", color: "#fff", }}>About Us</a>
                                     </li>
-                                    <li style={{ listStyle: "none", fontSize: "1rem", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
+                                    <li style={{ listStyle: "none", fontSize: "small", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
                                         <a href="" style={{ textDecoration: "none", color: "#fff" }}>Team</a>
                                     </li>
-                                    <li style={{ listStyle: "none", fontSize: "1rem", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
+                                    <li style={{ listStyle: "none", fontSize: "small", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
                                         <a href="" style={{ textDecoration: "none", color: "#fff" }}>Blog</a>
                                     </li>
                                 </ul>
                             </div>
                             <div className="col-6 col-lg-3 text-center" >
-                                <h2 className="ps-3">Service</h2>
+                                <h4 className="ps-3">Service</h4>
                                 <ul>
-                                    <li style={{ listStyle: "none", fontSize: "1rem", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
+                                    <li style={{ listStyle: "none", fontSize: "small", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
                                         <a href="" style={{ textDecoration: "none", color: "#fff", }}>Home Delivery</a>
                                     </li>
-                                    <li style={{ listStyle: "none", fontSize: "1rem", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
+                                    <li style={{ listStyle: "none", fontSize: "small", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
                                         <a href="" style={{ textDecoration: "none", color: "#fff" }}>Quick Support</a>
                                     </li>
-                                    <li style={{ listStyle: "none", fontSize: "1rem", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
+                                    <li style={{ listStyle: "none", fontSize: "small", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
                                         <a href="" style={{ textDecoration: "none", color: "#fff" }}>Contact Us</a>
                                     </li>
                                 </ul>
                             </div>
                             <div className="col-6 col-lg-3 text-center">
-                                <h2 className="ps-3">Legal</h2>
+                                <h4 className="ps-3">Legal</h4>
                                 <ul>
-                                    <li style={{ listStyle: "none", fontSize: "1rem", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
+                                    <li style={{ listStyle: "none", fontSize: "small", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
                                         <a href="" style={{ textDecoration: "none", color: "#fff" }}>Terms & Conditions</a>
                                     </li>
-                                    <li style={{ listStyle: "none", fontSize: "1rem", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
+                                    <li style={{ listStyle: "none", fontSize: "small", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
                                         <a href="" style={{ textDecoration: "none", color: "#fff" }}>Offer Terms</a>
                                     </li>
-                                    <li style={{ listStyle: "none", fontSize: "1rem", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
+                                    <li style={{ listStyle: "none", fontSize: "small", fontWeight: "lighter", color: "#fff", cursor: "pointer" }}>
                                         <a href="" style={{ textDecoration: "none", color: "#fff" }}>Privacy Policy</a>
                                     </li>
                                 </ul>
                             </div>
                             <div className="col-6 col-lg-3 text-center">
-                                <h2 className="ps-3">Follow Us</h2>
+                                <h4 className="ps-3">Follow Us</h4>
                                 <div className="row">
                                     <div className="col-3 mx-auto">
                                         <a href="" className="youtube" style={{ color: "#eb3223" }}>

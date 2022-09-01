@@ -15,6 +15,9 @@ class OrderService{
     getOrderByCustomerId(customerId){
         return axios.get(ORDERS_BASE_REST_API_URl + "/getUserOrders/" + customerId)
     }
+    getUserOrders(id){
+        return axios.get(ORDERS_BASE_REST_API_URl+"/getUserOrders/"+id)
+    }
 }
 
 export default  new OrderService();

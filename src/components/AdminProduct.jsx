@@ -89,15 +89,15 @@ export default function AdminProduct() {
 
   //Delete an item
   const deleteFoodItem = (sweetItemId) => {
-    ItemService.deleteSweetItem(sweetItemId).then((response) => {
-      getAllFoodItems();
-
-    }).catch(error => {
-      console.log(error);
-    })
-
+    if(window.confirm("Do you really want to delete sweet item with id "+sweetItemId+"!") == true) {
+      ItemService.deleteSweetItem(sweetItemId).then((response) => {
+        getAllFoodItems();
+  
+      }).catch(error => {
+        console.log(error);
+      })
   }
-
+  }
   return (
     // Add Product code of front-end
     <div>
@@ -155,6 +155,8 @@ export default function AdminProduct() {
               </table>
             </div>
           </div>
+
+
           {/* Button For Adding Products */}
           <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-5 p-3">
             <button className="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#addProduct">Add Products</button>
@@ -170,7 +172,7 @@ export default function AdminProduct() {
         var(--color-2) 70%   
       )`
                 }}>
-                  <form>
+                  <form onSubmit={(e) => { addFood(e); window.location.reload(); }}>
                     <div className="modal-header">
                       <h6 className="modal-title" id="exampleModalLabel">Add Products</h6>
                       <button type="button" className="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -185,13 +187,13 @@ export default function AdminProduct() {
                       <div className="mb-3">
                         <div className="col">
                           <label htmlFor="price">Price</label>
-                          <input type="text" className="form-control" placeholder="Enter Price" name="price" id="price" value={price} onChange={(e) => setPrice(e.target.value)} required />
+                          <input type="Number" className="form-control" placeholder="Enter Price" name="price" id="price" value={price} onChange={(e) => setPrice(e.target.value)} required />
                         </div>
                       </div>
                       <div className="mb-3">
                         <div className="col">
                           <label htmlFor="quantity">Stock</label>
-                          <input type="text" className="form-control" placeholder="Number of items available" name="quantity" id="quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} required />
+                          <input type="Number" className="form-control" placeholder="Number of items available" name="quantity" id="quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} required />
                         </div>
                       </div>
                       <div className="form-group tm-form-group mb-3">
@@ -205,7 +207,7 @@ export default function AdminProduct() {
                       </div>
                     </div>
                     <div className="modal-footer">
-                      <button type="button" className="btn btn-success btn-sm" onClick={(e) => { addFood(e); window.location.reload(); }} >Add Item</button>
+                      <button type="submit" className="btn btn-success btn-sm"  >Add Item</button>
                       <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Cancel</button>
                     </div>
                   </form>
@@ -238,6 +240,8 @@ export default function AdminProduct() {
             </div>
 
           </div>
+
+          
         </div>
       </div>
     </div>

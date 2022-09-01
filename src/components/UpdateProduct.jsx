@@ -74,13 +74,13 @@ export default function UpdateProduct() {
                 <div className="mb-3">
                   <div className="col px-3">
                     <label htmlFor="price">Price</label>
-                    <input type="text" className="form-control" placeholder="Enter Price" name="price" id="price" value={sweetItem.price} onChange={handleChange} required />
+                    <input type="Number" className="form-control" placeholder="Enter Price" name="price" id="price" value={sweetItem.price} onChange={handleChange} required />
                   </div>
                 </div>
                 <div className="mb-3">
                   <div className="col px-3">
                     <label htmlFor="quantity">Stock</label>
-                    <input type="text" className="form-control" placeholder="Number of items available" name="quantity" id="quantity" value={sweetItem.quantity} onChange={handleChange} required />
+                    <input type="Number" className="form-control" placeholder="Number of items available" name="quantity" id="quantity" value={sweetItem.quantity} onChange={handleChange} required />
                   </div>
                 </div>
                 <div className="form-group tm-form-group mb-3 px-3">

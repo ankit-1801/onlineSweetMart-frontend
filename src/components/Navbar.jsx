@@ -19,34 +19,41 @@ export default function Navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
+              {
+                localStorage.getItem('role')=="ROLE_ADMIN" &&  localStorage.getItem("token") &&
+                (<li className="nav-item">
                 <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/admin/orders">ORDERS</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/admin/products">PRODUCTS</Link>
-              </li>
-
-
-            </ul>
-
-
-            {/* {localStorage.getItem('token') && (
-                <li className="nav-item">
-                  <button className="btn btn--outline-success text-white nav-ame-1" type="button" data-bs-toggle="modal" data-bs-target="#details" ><small>DETAILS</small></button>
-                  <button className="btn btn--outline-success text-white nav-ame-1" type="button" data-bs-toggle="modal" data-bs-target="#myorder" > <small> MY ORDERS </small></button>
-                  <button className="btn btn--outline-success text-white nav-ame-1" type="button" ><small> LOGOUT  </small></button>
                 </li>)
-              } */}
-            <li className="nav-item pb-4 px-2">
-              <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/user/details">DETAILS</Link>
-            </li>
-            <li className="nav-item pb-4 px-2">
-              <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/user/orders">MY ORDERS</Link>
-            </li>
-            <li className="nav-item pb-4 px-2">
-              <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/logout">LOGOUT</Link>
-            </li>
+              }
 
+              { 
+                localStorage.getItem('role')=="ROLE_ADMIN" &&  localStorage.getItem("token") &&
+                (<li className="nav-item">
+                <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/admin/products">PRODUCTS</Link>
+                </li>)
+              }
+            </ul>
+            
+            {
+              localStorage.getItem('role')=="ROLE_USER" &&  localStorage.getItem("token") &&
+              (<li className="nav-item pb-4 px-2">
+              <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/user/details">DETAILS</Link>
+              </li>)
+            } 
+
+            { 
+              localStorage.getItem('role')=="ROLE_USER" &&  localStorage.getItem("token") &&
+              (<li className="nav-item pb-4 px-2">
+              <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/user/orders">MY ORDERS</Link>
+              </li>)
+            } 
+
+            { 
+              localStorage.getItem('token') &&
+              (<li className="nav-item pb-4 px-2">
+              <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/logout">LOGOUT</Link>
+              </li>)
+            }
 
 
             {localStorage.getItem('token') == null && (
@@ -61,9 +68,12 @@ export default function Navbar() {
                 <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/signup">REGISTER</Link>
               </li>
             )}
-            <Button variant="dark p-0 pe-2 ps-2" data-toggle="tooltip" data-placement="bottom" title="Cart" onClick={handleShow}>
+            {
+            localStorage.getItem('role')!="ROLE_ADMIN"  &&
+            (<Button variant="dark p-0 pe-2 ps-2" data-toggle="tooltip" data-placement="bottom" title="Cart" onClick={handleShow}>
               <img src={cart} width="55" height="55" className=" bg-light rounded-3" />
-            </Button>
+            </Button>)
+            }
           </div>
         </div>
       </nav>

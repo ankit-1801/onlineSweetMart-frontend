@@ -1,9 +1,11 @@
 import React from "react";
-
 export default function Logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('role');
+    window.open("/", "_self");
     return(
-        <div className="text-center text-white">
-            <h1>Loging Out!!!!!</h1>
-        </div>
+        <>
+        </>
     )
 }

@@ -48,8 +48,8 @@ export default function UpdateProduct() {
   };
 
   return (
-      <div style={{paddingLeft:'33%',paddingRight:'33%'}} id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog ">
+      <div style={{paddingLeft:'33%',paddingRight:'33%',paddingBottom:"5%"}} id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal-dialog pb-5">
           <div className="modal-content text-dark rounded-3" id="modal-body" style={{
                 '--color-1': 'deepskyblue', '--color-2': 'gray',
                  background: `

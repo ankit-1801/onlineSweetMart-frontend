@@ -10,7 +10,7 @@ export default function Navbar() {
   const handleShow = () => setShow(true);//cart modal
 
   return (
-    <div className="pb-5">
+    <div className="pb-3">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-0">
         <div className="container-fluid m-0">
           <Link className="navbar-brand" to="/"><img src={Logo} width="55" height="55" className="nav-ap-0 rounded-3" /></Link>
@@ -19,6 +19,13 @@ export default function Navbar() {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              {
+                localStorage.getItem('role')=="ROLE_ADMIN" &&  localStorage.getItem("token") &&
+                (<li className="nav-item">
+                <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/admin/home">HOME</Link>
+                </li>)
+              }
+
               {
                 localStorage.getItem('role')=="ROLE_ADMIN" &&  localStorage.getItem("token") &&
                 (<li className="nav-item">
@@ -34,6 +41,12 @@ export default function Navbar() {
               }
             </ul>
             
+            {
+              localStorage.getItem('role')!="ROLE_ADMIN" &&  localStorage.getItem("token") &&
+              (<li className="nav-item pb-4 px-2">
+              <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/">HOME</Link>
+              </li>)
+            } 
             {
               localStorage.getItem('role')=="ROLE_USER" &&  localStorage.getItem("token") &&
               (<li className="nav-item pb-4 px-2">

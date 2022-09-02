@@ -30,16 +30,14 @@ export default function Login() {
                localStorage.setItem('user',JSON.stringify(user.data))
                alert("login successful!!");
            }
-          else if(tokenData.status== 500 || user.data.role === 'ROLE_ADMIN'){
-             alert("bad Credential!!");
-           }
-
+          else  alert("bad Credential!!");
           })
          ).catch(error=>{
            alert("bad Credential!!");
          })
         }
-        if(localStorage.getItem('token'))alert("bad Credential!!")
+        // if(localStorage.getItem('token'))alert("bad Credential!!")
+        // else
         window.open("/", "_self");
     }
     return (

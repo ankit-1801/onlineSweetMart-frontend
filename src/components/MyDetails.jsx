@@ -1,64 +1,100 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import UserService from "../services/UserService";
 
 export default function MyDetails() {
+  const [user,setUser] = useState({
+    userid:"",
+    name:"",
+    email:"",
+    street:"",
+    city:"",
+    state:"",
+    pincode:""
+  });
+  useEffect(()=>{
+    if(localStorage.getItem('user')){
+    UserService.loadUserByUsername(JSON.parse(localStorage.getItem('user')).email).then((res)=>{
+        const u = res.data;
+        setUser(u);
+    }).catch(err=>console.log(err));
+    }
+  },[])
+
     return(
-        <div className="text-center text-white">
-            <div className="mb-4" >
-                <div className="container" style={{}}>
-                    <div  style={{paddingRight:"23%",paddingLeft:"23%"}}>
-                      <ul class="list-group ">
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-start">
-                          <div class="ms-2 me-auto">
-                            <div class="fw-bold">Name</div>
-                            {}
-                          </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-start">
-                          <div class="ms-2 me-auto">
-                            <div class="fw-bold">Email</div>
-                            {}
-                          </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-start">
-                          <div class="ms-2 me-auto">
-                            <div class="fw-bold">Phone Number</div>
-                            {}
-                          </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-start">
-                          <div class="ms-2 me-auto">
-                            <div class="fw-bold">Street</div>
-                            {}
-                          </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-start">
-                          <div class="ms-2 me-auto">
-                            <div class="fw-bold">City</div>
-                            {}
-                          </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-start">
-                          <div class="ms-2 me-auto">
-                            <div class="fw-bold">State</div>
-                            {}
-                          </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-start">
-                          <div class="ms-2 me-auto">
-                            <div class="fw-bold">Country</div>
-                            {}
-                          </div>
-                        </li>
-                        <li class="list-group-item list-group-item-dark d-flex justify-content-between align-items-start">
-                          <div class="ms-2 me-auto">
-                            <div class="fw-bold">Pin Code :</div>
-                            {}
-                          </div>
-                        </li>
-                      </ul>
-                  </div>
+      <div style={{paddingLeft:'33%',paddingRight:'33%',paddingBottom:"5%"}} id="addProduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal-dialog pb-5">
+        <div className="modal-content text-dark rounded-3" id="modal-body" style={{
+              '--color-1': 'deepskyblue', '--color-2': 'gray',
+               background: `
+                           linear-gradient(
+                             120deg,
+                             var(--color-1),
+                             var(--color-2) 70%   
+                           )`
+        }}>
+            <div className="modal-header px-2 pt-2">
+              <h6 className="modal-title" id="exampleModalLabel">My Details</h6>
+            </div>
+            <hr/>
+            <div className="px-4">
+              <div className="mb-2 row">
+                <div className="col px-3 col">
+                  <h6 htmlFor="foodname">Name :</h6>
+                </div>
+                <div className="col  col">
+                  <label htmlFor="name">{user.name}</label>
                 </div>
               </div>
+              <div className="mb-2 row">
+                <div className="col px-3 col">
+                  <h6 htmlFor="foodname">Email :</h6>
+                </div>
+                <div className="col  col">
+                  <label htmlFor="email">{user.email}</label>
+                </div>
+              </div>
+              <div className="mb-2 row">
+                <div className="col px-3 col">
+                  <h6 htmlFor="Street">Street :</h6>
+                </div>
+                <div className="col  col">
+                  <label htmlFor="street">{user.street}</label>
+                </div>
+              </div>
+              <div className="mb-2 row">
+                <div className="col px-3 col">
+                  <h6 htmlFor="city">City :</h6>
+                </div>
+                <div className="col  col">
+                  <label htmlFor="city">{user.city}</label>
+                </div>
+              </div>
+              <div className="mb-2 row">
+                <div className="col px-3 col">
+                  <h6 htmlFor="state">State :</h6>
+                </div>
+                <div className="col  col">
+                  <label htmlFor="state">{user.state}</label>
+                </div>
+              </div>
+              <div className="mb-2 row">
+                <div className="col px-3 col">
+                  <h6 htmlFor="Pin">Pincode :</h6>
+                </div>
+                <div className="col  col">
+                  <label htmlFor="Pin">{user.pincode}</label>
+                </div>
+              </div>
+            </div>
+            <hr/>
+            <div className="modal-footer px-3 pb-2">
+            <Link  to={"/user/update/"+user.userid} className="btn btn-success btn-sm p-1">Update</Link>
+            </div>
         </div>
+      </div>
+    </div>
     )
 }

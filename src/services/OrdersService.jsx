@@ -18,6 +18,9 @@ class OrderService{
     getUserOrders(id){
         return axios.get(ORDERS_BASE_REST_API_URl+"/getUserOrders/"+id)
     }
+    getSweetItemListByOrderId(id){
+        return axios.get(ORDERS_BASE_REST_API_URl+"/getSweetItemListByOrderId/"+id)
+    }
 }
 
 export default  new OrderService();

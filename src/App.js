@@ -12,6 +12,9 @@ import Logout from './components/Logout';
 import MyDetails from './components/MyDetails';
 import MyOders from './components/MyOrders';
 import UpdateProduct from './components/UpdateProduct';
+import AdminHome from './components/AdminHome';
+import UpdateUser from './components/UpdateUser';
+import OrderDetails from './components/OrderDetails';
 
 function App() {
   return (
@@ -27,7 +30,10 @@ function App() {
       <Route path='/logout'element={<Logout/>} />  
       <Route path='/user/details'element={<MyDetails/>} />  
       <Route path='/user/orders'element={<MyOders/>} />  
+      <Route path='/admin/home'element={<AdminHome/>} />  
       <Route path="/user/product/update/:id" element={<UpdateProduct/>} />  
+      <Route path="/user/update/:id" element={<UpdateUser/>} />  
+      <Route path="/order/details/:id" element={<OrderDetails/>} />  
       </Routes>
       <Footer/>
       </CartProvider>    

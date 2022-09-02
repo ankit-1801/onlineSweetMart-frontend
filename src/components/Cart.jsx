@@ -9,7 +9,8 @@ toast.configure()
 export default function Cart() {
     // const[amount , setAmount] = useState(()=> 0)
     // const[customerId ,setCustomerId] = useState(()=>0)
-    const [data, setData] = useState({ amount: 0, customerId: 0 });
+    const [data, setData] = useState({userId: 0,totalCost: 0,sweetItemList: []});
+
     const {
         isEmpty,
         totalUniqueItems,
@@ -42,8 +43,20 @@ export default function Cart() {
             alert("please login first!!");
         }
         else{
+            const sweetlist = [];
+            items.map((item,index)=>{
+                const sweetItemId = Number(item.id);
+                const purchaseQuantity = Number(item.quantity);
+                const sweetItemName = item.title;
+                const li = {
+                    sweetItemId
+                    ,purchaseQuantity,
+                    sweetItemName
+                };
+                sweetlist.push(li)
+            })    
         setData(data => {
-            return { amount: cartTotal, customerId: Number(JSON.parse(localStorage.getItem('customer')).customerId) }
+            return { totalCost: cartTotal, userId: Number(JSON.parse(localStorage.getItem('user')).userid),sweetItemList: sweetlist }
         })
      }
     }
@@ -60,57 +73,11 @@ export default function Cart() {
     }
 
     useEffect(() => {
-        if (data.amount != 0) {
+        if (data.totalCost != 0) {
             OrdersService.createOrder(data).then((response) => {
 
                 console.log(response);
-                // if (response.status === 200) {
-                //     console.log(Number(response.data.amount))
-                //     let options = {
-                //         key: 'rzp_test_syNtpIejUJ1PGG',
-                //         amount: Number(response.data.amount),
-                //         currency: 'INR',
-                //         name: 'Online Food Ordering',
-                //         description: 'Service Charges',
-                //         image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIkAAACJCAMAAAAv+uv7AAAAxlBMVEX///9jrkX3lB3///38///19fVlrUj///tcqzxhrkJrsU/98+b5kx38/Pz3jABisELzz6n1kAD4kRJWqjL/+vH65s721bbxyp3z3sj57dr+//fvhgD0hQDxnjvyun3z3LvrtW3679b4ly/31aryw4rymDDyx5P3plTypETukyOcxotzsVnzrGTz+vDtrVjK4L+GunLl8eF/u2mx0aXs0q692LBLpR+u1p6hxZHc59JeozqSwHzW58pzq1qiz470tnM4mwCOtn1IHlJlAAAGCUlEQVR4nO1aa1ubShBmgezNEEzWnNRom3q0XlgpLJQkCKn1//+pM0NiTayeT4D9sO+jmBDjvpnLO7OzOo6FhYWFhYWFhYWFhYWFhYWFhYWFxV8G3/Md72T6z/FsNvvx6XSO9xjrnQawYNOrm7Pzs9E5YnQ+/vxlceT7ffNw5qez+6+zxcUR4GIx+3p7Nx6PRv/eL04cz+uTyunx5fTAEfPTy5uzsTs5u7kEt/XmI3bxhht8/+jq22g4GX0DLn0xCQKf/eECzwcu1+7InYweT/pi8i485+L7yAU2U3z8kfA9x1+MJ2CWa/axVJjvB87088R1x1f9K8ufOLlFKo8f6x4EiM3N2B2Ov3w0EaRyBFYZnh37H28W58hFBy16X/cNfV+4rju561tXIEtiE+/fgfr4BXXlyus1l5nDIq5UtMcFjDS/dYfuaNojDwzQiIeEqOjllg9UpiN3OPneXzFEJkwJgiicA43H/Bkvem1YzJIjlNKr+DcV359C+kxuemUSV1G0/YrMbyae52OknB/12Dn5TiSkluH69Quz0QTSx+k1VPJQkSh+ffcINMW9Oekikf1DQzN46pm8SqvCGONtf2P/9XuMlNP2ebwGGj3RSnEiVAlPyyJKvAOu16hul12sbR6K5qe3Y2Kqbf6ilJQSs6fed4U/RSaP7XvHg3TNavTC7k/HmhMS8jDcxPhYECqSg2XnwGRy234ee7kUQvG03j1nGRARspDLGqyDPqJVHAT71DFk7+ZtEzF6KUgoiOC519glVxQ8kwRSZJrIkKRlPBgEg5d3+D42b26bIdvY15QrImFpKlQBd7xYC2CWMZZyHZUFJ6kzQLy8jTnf22YCRb9MVj81lU19EcSAVWrwDeHRLjAKLqVxgkHggHt2HmL+V+yXPrVIxGit0/VGbiSVklAtc1gsByaS5EEQMI8FOZE0AaNs7QJ84Mr8x3GbTBr5YiwuU2CC0Fo8AZMIHCXlk4PLBkFEJY0cjJMtlebStk3iIsogZzgF51CiHnT6lAeGRciKyHVtTGmcilDKm4gNdhewSdtxYqpVYmpFpd6kUZ7USb6uNrIAf0hJNfADM5mUSE3WA/AKQxchk4C1nDs7/S6AQpFHGVkqna6KOi41BAysD1fJywyISlWtohRiKjJNnASDu2GbeuL5zDNRBnoqdbUuyng+H8QAlgtBQyogcCmpKXiHQg8p8KJ44XiDwDsZo8a2RaSxSbkBt5RxmRTrKM2yDD63zlJQMyKzvOKhjjnZJjgon9B5GaMGNXVn/NgaE2dbdQH1r+USIlfggiIMsY0m5IE9cZWYHZMwlFW+yrK4ec+uFrdYAXHXgiO+Mkl+IgsswOAM8IjgupQqY0Wj/KB5WUoVF6pCJrv+pJs9KVvvPvzOBDRiOYcKGHGiUYAlSYsVJaHEBq7p2W5Puph1wc5GhXSPCYi9Q6E7iYXgheSUiAyUvlCEQ+vkzMbQx163TwORcEIPbPJQ1EoWayiGaa1WQC3HBkpRDi3Tc2/fBZgW5AACMjsEcRWhqovCIUtSIV9FROl0ut9J1M4i9JkRpBBmLuUZgyXj2ORpssKnkMPd7QGZB5IOJEDLaLZvGNCQJTZyeZZW61WBcgdhgmIyue9msxPnJgM/6JVWunqJGLjV9E7QxRisCAQba39+C0Lfxaxg2zAaJXgKdaRSVaRAV3A3zGWaQM6yujCbKlqnuspR157nJ617x2t2VSWhzceHmKwrqMLgjcLEjQPm63WMq3rbg5XFpOOZksmXOfzIOdfOPG7Ec1urX+koztmGHc3ZwPhrvcmyKkpMstU0b2/CBg/YsyOa2ePdcHzczWgrj7A3g+8CkhTSo353med57FUXNLYwG+gFlsswFOoh+Z8jgt2MuisaHvMDHA6UlYaOybz9SwyPfZ7n9h0PcLzdxPNtwfp9lnHe/VkGa4Ym83dXubhHaXU/9XS+A9vw9868hpNez7yC6elfcg7oOKc//jwbvR/1fzYKYAfnxdcfd16Mgsqm1y9n6OejjzlDd5rJ79/xfwUWFhYWFhYWFhYWFhYWFhYWFhYWFu/jP25ZmLa0hetkAAAAAElFTkSuQmCC',
-                //         order_id: response.id,
-                //         handler: function (response) {
-                //             console.log(response.razorpay_payment_id)
-                //             console.log(response.razorpay_order_id)
-                //             console.log(response.razorpay_signature)
-                //             console.log('payment successfull !!')
-                //             alert("congrates !! Payment Successful !!")
-                //         },
-                //         prefill: {
-                //             "name": "Gaurav Kumar",
-                //             "email": "gaurav.kumar@example.com",
-                //             "contact": "9999999999"
-                //         },
-                //         notes: {
-                //             "address": "Online food ordering system"
-                //         },
-                //         theme: {
-                //             "color": "#3399cc"
-                //         }
-                //     };
-
-                //     console.log(options)
-                //     let rzp = new window.Razorpay(options);
-
-                //     rzp.on('payment.failed', function (response) {
-                //         console.log(response.error.code);
-                //         console.log(response.error.description);
-                //         console.log(response.error.source);
-                //         console.log(response.error.step);
-                //         console.log(response.error.reason);
-                //         console.log(response.error.metadata.order_id);
-                //         console.log(response.error.metadata.payment_id);
-
-                //         alert("oops!! Payment failed!")
-                //     });
-
-                //     rzp.open();
-                // }
+ 
                 <ToastContainer />
                 alertmsg("Your order has been placedd..");
 
@@ -128,7 +95,7 @@ export default function Cart() {
                     const quantity = String((Number(oldquantity) - Number(item.quantity)))
                     const data = { quantity }
 
-                    ItemService.updateQuantity(Number(item.id), data).then((response) => {
+                    ItemService.updateSweetItem(Number(item.id), data).then((response) => {
                     }).catch(error => {
                         console.log(error);
                     })

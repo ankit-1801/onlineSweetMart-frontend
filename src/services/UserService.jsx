@@ -15,6 +15,9 @@ class UserService{
     readUser(id){
         return axios.get(USERS_BASE_REST_API_URl+"/read/"+id);
     }
+    updateUser(id,user){
+        return axios.patch(USERS_BASE_REST_API_URl+"/update/"+id ,user);
+    }
 
 }
 

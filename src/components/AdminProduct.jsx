@@ -100,8 +100,8 @@ export default function AdminProduct() {
   }
   return (
     // Add Product code of front-end
-    <div>
-      <div className="container my-2 w-100 rounded-3 " id="product-heading" style={{
+    <div className='pb-4'>
+      <div className="container my-2 w-100 rounded-3" id="product-heading" style={{
         '--color-1': 'deepskyblue', '--color-2': 'gray',
         background: `
     linear-gradient(
@@ -114,7 +114,7 @@ export default function AdminProduct() {
           <div className="container p-4 ">
             <h4> Product List</h4>
             {/* Table for Showing Food items Already available */}
-            <div style={{ 'overflow': 'auto', 'height': '350px' }}>
+            <div style={{ 'overflow': 'auto', 'height': '280px' }}>
               <table className="table table-sm" style={{ fontFamily: "serif" }} >
                 {/* Table Heading */}
                 <thead>

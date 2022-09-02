@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import OrdersService from '../services/OrdersService';
 export default function AdminOrders() {
 
@@ -51,7 +52,7 @@ export default function AdminOrders() {
           <div>
             <h4>Customers orders list</h4>
           </div>
-          <div className="my-3" style={{ 'overflow': 'auto', 'height': '500px' }}>
+          <div className="my-3" style={{ 'overflow': 'auto', 'height': '300px' }}>
             <table className="table table-sm" style={{ fontFamily: "serif" }} >
               <thead>
                 <tr>
@@ -69,7 +70,9 @@ export default function AdminOrders() {
                     <tr className={order.status === "delivered" ? 'table-success'
                       : order.status === "cancelled" ? 'table-danger' : ""} >
                       <th scope='row'>
+                        <Link to={"/order/details/"+order.orderId} className="btn p-0">
                         {order.orderId}
+                        </Link>
                       </th>
                       <td >
                         <select className="form-select-sm" aria-label="Default select example" name='option_select'

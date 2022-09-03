@@ -1,10 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import UserService from "../services/UserService";
 
 export default function MyDetails() {
+  
+  let navigate = useNavigate();
+  const params = useParams();
   const [user,setUser] = useState({
     userid:"",
     name:"",
@@ -15,8 +18,8 @@ export default function MyDetails() {
     pincode:""
   });
   useEffect(()=>{
-    if(localStorage.getItem('user')){
-    UserService.loadUserByUsername(JSON.parse(localStorage.getItem('user')).email).then((res)=>{
+    if(localStorage.getItem('token')){
+    UserService.readUser(params.id).then((res)=>{
         const u = res.data;
         setUser(u);
     }).catch(err=>console.log(err));
@@ -91,7 +94,14 @@ export default function MyDetails() {
             </div>
             <hr/>
             <div className="modal-footer px-3 pb-2">
-            <Link  to={"/user/update/"+user.userid} className="btn btn-success btn-sm p-1">Update</Link>
+            {
+                localStorage.getItem('role')==='ROLE_USER' &&
+                <Link  to={"/user/update/"+user.userid} className="btn btn-success btn-sm p-1">Update</Link>
+            }
+            {
+                localStorage.getItem('role')==='ROLE_ADMIN' &&
+                <Link  to= "/admin/orders"  className="btn btn-success btn-sm p-1">Back</Link>
+            }
             </div>
         </div>
       </div>

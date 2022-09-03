@@ -15,30 +15,33 @@ import UpdateProduct from './components/UpdateProduct';
 import AdminHome from './components/AdminHome';
 import UpdateUser from './components/UpdateUser';
 import OrderDetails from './components/OrderDetails';
+import PrivateRoutes from './Utils/PrivateRoutes';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <CartProvider>
-      <Navbar/>
-      <Routes>
-      <Route path='/'element={<Home/>} /> 
-      <Route path='/login'element={<Login/>} /> 
-      <Route path='/signup'element={<Signup/>} /> 
-      <Route path='/admin/orders'element={<AdminOrders/>} /> 
-      <Route path='/admin/products'element={<AdminProduct/>} />  
-      <Route path='/logout'element={<Logout/>} />  
-      <Route path='/user/details'element={<MyDetails/>} />  
-      <Route path='/user/orders'element={<MyOders/>} />  
-      <Route path='/admin/home'element={<AdminHome/>} />  
-      <Route path="/user/product/update/:id" element={<UpdateProduct/>} />  
-      <Route path="/user/update/:id" element={<UpdateUser/>} />  
-      <Route path="/order/details/:id" element={<OrderDetails/>} />  
-      </Routes>
-      <Footer/>
-      </CartProvider>    
-    </BrowserRouter> 
-  );
+    return (
+        <BrowserRouter>
+            <CartProvider>
+                <Navbar />
+                <Routes>
+                    <Route path='/signup' element={<Signup />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/' element={<Home />} />
+                    <Route element={<PrivateRoutes />}>
+                        <Route path='/admin/orders' element={<AdminOrders />} />
+                        <Route path='/admin/products' element={<AdminProduct />} />
+                        <Route path='/logout' element={<Logout />} />
+                        <Route path='/user/orders' element={<MyOders />} />
+                        <Route path='/admin/home' element={<AdminHome />} />
+                        <Route path='/user/details/:id' element={<MyDetails />} />
+                        <Route path="/user/product/update/:id" element={<UpdateProduct />} />
+                        <Route path="/user/update/:id" element={<UpdateUser />} />
+                        <Route path="/order/details/:id" element={<OrderDetails />} />
+                    </Route>
+                </Routes>
+                <Footer />
+            </CartProvider>
+        </BrowserRouter>
+    );
 }
 
 export default App;

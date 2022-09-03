@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import Logo from '../images/logo.jpg';
 import cart from '../images/cart.png';
@@ -20,21 +20,21 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {
-                localStorage.getItem('role')=="ROLE_ADMIN" &&  localStorage.getItem("token") &&
+                localStorage.getItem('role')==="ROLE_ADMIN" &&  localStorage.getItem("token") &&
                 (<li className="nav-item">
                 <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/admin/home">HOME</Link>
                 </li>)
               }
 
               {
-                localStorage.getItem('role')=="ROLE_ADMIN" &&  localStorage.getItem("token") &&
+                localStorage.getItem('role')==="ROLE_ADMIN" &&  localStorage.getItem("token") &&
                 (<li className="nav-item">
                 <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/admin/orders">ORDERS</Link>
                 </li>)
               }
 
               { 
-                localStorage.getItem('role')=="ROLE_ADMIN" &&  localStorage.getItem("token") &&
+                localStorage.getItem('role')==="ROLE_ADMIN" &&  localStorage.getItem("token") &&
                 (<li className="nav-item">
                 <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/admin/products">PRODUCTS</Link>
                 </li>)
@@ -42,20 +42,20 @@ export default function Navbar() {
             </ul>
             
             {
-              localStorage.getItem('role')!="ROLE_ADMIN" &&  localStorage.getItem("token") &&
+              localStorage.getItem('role')!=="ROLE_ADMIN" &&  localStorage.getItem("token") &&
               (<li className="nav-item pb-4 px-2">
               <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/">HOME</Link>
               </li>)
             } 
             {
-              localStorage.getItem('role')=="ROLE_USER" &&  localStorage.getItem("token") &&
+              localStorage.getItem('role')==="ROLE_USER" &&  localStorage.getItem("token") &&
               (<li className="nav-item pb-4 px-2">
-              <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/user/details">DETAILS</Link>
+              <Link className="nav-link active text-white nav-ame-1" aria-current="page" to= {"/user/details/"+JSON.parse(localStorage.getItem('user')).userid}>DETAILS</Link>
               </li>)
             } 
 
             { 
-              localStorage.getItem('role')=="ROLE_USER" &&  localStorage.getItem("token") &&
+              localStorage.getItem('role')==="ROLE_USER" &&  localStorage.getItem("token") &&
               (<li className="nav-item pb-4 px-2">
               <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/user/orders">MY ORDERS</Link>
               </li>)
@@ -69,20 +69,20 @@ export default function Navbar() {
             }
 
 
-            {localStorage.getItem('token') == null && (
+            {localStorage.getItem('token') === null && (
               <li className="nav-item pb-4 px-1">
                 {/* <button className="btn btn--outline-success text-white nav-ame-1" type="button" ><small>LOGIN</small></button> */}
                 {/* <button className="btn btn--outline-success text-white nav-ame-1" type="button"  ><small>SIGNUP</small></button> */}
                 <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/login">LOGIN</Link>
               </li>
             )}
-            {localStorage.getItem('token') == null && (
+            {localStorage.getItem('token') === null && (
               <li className="nav-item pb-4 px-2">
                 <Link className="nav-link active text-white nav-ame-1" aria-current="page" to="/signup">REGISTER</Link>
               </li>
             )}
             {
-            localStorage.getItem('role')!="ROLE_ADMIN"  &&
+            localStorage.getItem('role')!=="ROLE_ADMIN"  &&
             (<Button variant="dark p-0 pe-2 ps-2" data-toggle="tooltip" data-placement="bottom" title="Cart" onClick={handleShow}>
               <img src={cart} width="55" height="55" className=" bg-light rounded-3" />
             </Button>)

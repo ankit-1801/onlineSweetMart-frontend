@@ -19,13 +19,13 @@ export default function Home() {
 
         <div>
 
-        {(localStorage.getItem('role')!='ROLE_ADMIN') &&
+        {(localStorage.getItem('role')!=='ROLE_ADMIN') &&
          (<div className="bg-dark">
         <PostHeader/>
         <FoodItems data = {foodItems}/>
         </div>)
         }
-        { (localStorage.getItem('role')=='ROLE_ADMIN') &&
+        { (localStorage.getItem('role')==='ROLE_ADMIN') &&
           <AdminHome/>
         }
 

@@ -45,11 +45,11 @@ const Itemcard = (props) => {
 
     return (
         <div className="col-11 col-md-6 col-lg-3 mx-0 mb-4">
-            <div class="card p-0 overflow-hidden h-100 shadow">
-                <img src={img} class="card-img-top img-fluid" alt={title} />
-                <div class="card-body text-center">
-                    <h6 class="card-title">{title}</h6>
-                    <h6 class="card-text">₹ {price}</h6>
+            <div className="card p-0 overflow-hidden h-100 shadow">
+                <img src={img} className="card-img-top img-fluid" alt={title} />
+                <div className="card-body text-center">
+                    <h6 className="card-title">{title}</h6>
+                    <h6 className="card-text">₹ {price}</h6>
                     {/* <p class="card-text">{props.desc}</p> */}
 
                     {/* className = {current_item_quant===false ?"btn btn-danger disiable" */}

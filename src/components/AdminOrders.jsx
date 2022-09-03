@@ -57,6 +57,7 @@ export default function AdminOrders() {
               <thead>
                 <tr>
                   <th scope="col" >OrderId</th>
+                  <th scope="col" >UserId</th>
                   <th scope="col">Status</th>
                   <th scope="col">Amount</th>
                   <th scope="col">Order Date</th>
@@ -74,6 +75,11 @@ export default function AdminOrders() {
                         {order.orderId}
                         </Link>
                       </th>
+                      <td>
+                        <Link to={"/user/details/"+order.userId} className="btn p-0">
+                        {order.userId}
+                        </Link>
+                      </td>
                       <td >
                         <select className="form-select-sm" aria-label="Default select example" name='option_select'
                           value={option_select}

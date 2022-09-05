@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import UserService from "../services/UserService";
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function Login() {
     let navigate = useNavigate();
@@ -42,20 +42,20 @@ export default function Login() {
     }
     return (
         <div>
-            <section class="vh-100 text-white">
-                <div class="container-fluid h-custom">
-                    <div class="row d-flex justify-content-center align-items-center h-100">
-                        <div class="col-md-9 col-lg-6 col-xl-5">
+            <section className="vh-100 text-white">
+                <div className="container-fluid h-custom">
+                    <div className="row d-flex justify-content-center align-items-center h-100">
+                        <div className="col-md-9 col-lg-6 col-xl-5">
                             <img src="https://static.toiimg.com/photo/87304656.cms"
-                                class="img-fluid" alt="doctor-appointment" />
+                                className="img-fluid" alt="doctor-appointment" />
                         </div>
-                        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                        <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                             <form onSubmit={handleSubmit}>
                                 {/* Email input */}
-                                <div class="form-outline mb-4" >
+                                <div className="form-outline mb-4" >
                                     <input type="email"
                                         id="username"
-                                        class="form-control form-control-lg"
+                                        className="form-control form-control-lg"
                                         name="username"
                                         onChange={handleInputChange}
                                         value={inputs.username}
@@ -63,37 +63,37 @@ export default function Login() {
                                         placeholder="Enter a valid email address"
                                         
                                     />
-                                    <label class="form-label" for="username">Email address</label>
+                                    <label className="form-label" htmlFor="username">Email address</label>
                                 </div>
 
                                 {/* Password input */}
-                                <div class="form-outline mb-3">
+                                <div className="form-outline mb-3">
                                     <input type="password"
                                         id="password"
                                         name='password'
-                                        class="form-control form-control-lg"
+                                        className="form-control form-control-lg"
                                         onChange={handleInputChange}
                                         value={inputs.password}
                                         placeholder="Enter password"
                                     />
-                                    <label class="form-label" for="password">Password</label>
+                                    <label className="form-label" htmlFor="password">Password</label>
                                 </div>
 
-                                {/* <div class="d-flex justify-content-between align-items-center">
+                                {/* <div className="d-flex justify-content-between align-items-center">
                         
-                        <a href="#!" class="text-body">Forgot password?</a>
+                        <a href="#!" className="text-body">Forgot password?</a>
                     </div> */}
 
-                                <div class="text-center text-lg-start mt-4 pt-2 btn1">
+                                <div className="text-center text-lg-start mt-4 pt-2 btn1">
                                     <button
                                         type="submit"
-                                        class="btn btn-primary btn-lg"
+                                        className="btn btn-primary btn-lg"
                                         
                                     >
                                         Login
                                     </button>
-                                    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/userregistration"
-                                        class="link-danger">Register</a></p>
+                                    <p className="small fw-bold mt-2 pt-1 mb-0"> <Link to="/forgot/password"
+                                        className="link-danger">Forgot password?</Link></p>
                                 </div>
 
                             </form>

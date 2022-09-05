@@ -1,4 +1,5 @@
 import React ,{useState} from "react";
+import UserService from "../services/UserService";
 
 export default function Login() {
   // States for registration
@@ -10,30 +11,33 @@ export default function Login() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
  
-  // Handling the name change
+  // Handdivng the name change
   const handleName = (e) => {
     setName(e.target.value);
     setSubmitted(false);
   };
  
-  // Handling the email change
+  // Handdivng the email change
   const handleEmail = (e) => {
     setEmail(e.target.value);
     setSubmitted(false);
   };
  
-  // Handling the password change
+  // Handdivng the password change
   const handlePassword = (e) => {
     setPassword(e.target.value);
     setSubmitted(false);
   };
  
-  // Handling the form submission
+  // Handdivng the form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name === '' || email === '' || password === '') {
       setError(true);
     } else {
+      UserService.signUpUser({name,email,password}).then((res)=>{
+          console.log(res);
+      }).catch(err=> console.log(err))
       setSubmitted(true);
       setError(false);
     }
@@ -43,11 +47,11 @@ export default function Login() {
   const successMessage = () => {
     return (
       <div
-        className="success"
+        className="success text-success"
         style={{
           display: submitted ? '' : 'none',
         }}>
-        <h1>User {name} successfully registered!!</h1>
+        <h6>User {name} successfully registered!!</h6>
       </div>
     );
   };
@@ -56,45 +60,53 @@ export default function Login() {
   const errorMessage = () => {
     return (
       <div
-        className="error"
+        className="error text-danger"
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>Please enter all the fields</h1>
+        <h6>Please enter all the fields</h6>
       </div>
     );
   };
  
   return (
+    <div className="" style={{paddingLeft:"40%",paddingRight:"20%"}}>
     <div className="form text-white">
       <div>
         <h1>User Registration</h1>
       </div>
  
-      {/* Calling to the methods */}
+      {/* Caldivng to the methods */}
       <div className="messages">
         {errorMessage()}
         {successMessage()}
       </div>
- 
-      <form>
+      <form onSubmit={handleSubmit}>
         {/* Labels and inputs for form data */}
-        <label className="label">Name</label>
+        {/* <ul> */}
+          <div>
+        <label className="label">Name</label><br/>
         <input onChange={handleName} className="input"
           value={name} type="text" />
-        
-        <label className="label">Email</label>
+        </div>
+        <div>
+        <label className="label">Email</label><br/>
         <input onChange={handleEmail} className="input"
           value={email} type="email" />
- 
-        <label className="label">Password</label>
+        </div>
+        <div>
+        <label className="label">Password</label><br/>
         <input onChange={handlePassword} className="input"
           value={password} type="password" />
- 
-        <button onClick={handleSubmit} className="btn" type="submit">
+        </div>
+        <div className=" pt-2 pb-4">
+        <button className="btn btn-sm btn-success" type="submit">
           Submit
         </button>
+        </div>
+        {/* </ul> */}
       </form>
+      </div>
     </div>
   );
 }

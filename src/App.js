@@ -16,6 +16,8 @@ import AdminHome from './components/AdminHome';
 import UpdateUser from './components/UpdateUser';
 import OrderDetails from './components/OrderDetails';
 import PrivateRoutes from './Utils/PrivateRoutes';
+import ForgotPassword from './components/ForgotPassword';
+import EnterOtp from './components/EnterOtp';
 
 function App() {
     return (
@@ -25,6 +27,8 @@ function App() {
                 <Routes>
                     <Route path='/signup' element={<Signup />} />
                     <Route path='/login' element={<Login />} />
+                    <Route path='/forgot/password' element={<ForgotPassword />} />
+                    <Route path='/enter/otp/:username' element={<EnterOtp />} />
                     <Route path='/' element={<Home />} />
                     <Route element={<PrivateRoutes />}>
                         <Route path='/admin/orders' element={<AdminOrders />} />

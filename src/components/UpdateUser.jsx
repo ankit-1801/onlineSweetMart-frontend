@@ -28,9 +28,9 @@ export default function UpdateUser() {
     // send put request to update
     UserService.updateUser(user.userid, user)
       .then((res) => {
-        navigate("/user/details");
       })
       .catch((error) => console.log(error));
+      navigate("/user/details/"+params.id);
   };
 
 

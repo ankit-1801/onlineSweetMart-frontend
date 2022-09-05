@@ -18,6 +18,12 @@ class UserService{
     updateUser(id,user){
         return axios.patch(USERS_BASE_REST_API_URl+"/update/"+id ,user);
     }
+    changePassword(resetPass){
+        return axios.put(USERS_BASE_REST_API_URl+"/changePassword",resetPass);
+    }
+    generateOtp(email){
+        return axios.post(USERS_BASE_REST_API_URl+"/generateOtp/"+email)
+    }
 
 }
 
